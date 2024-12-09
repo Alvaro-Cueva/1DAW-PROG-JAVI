@@ -78,7 +78,6 @@ public class Password {
 		}
 		return num;
 	}
-	
 }
 	
 	
