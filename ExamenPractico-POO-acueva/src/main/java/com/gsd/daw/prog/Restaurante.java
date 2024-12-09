@@ -11,14 +11,14 @@ public class Restaurante {
 	private String [] menu;
 	private double [] precio;
 	
-	public Restaurante(String nombre, int cant_mesas, double caja, String[] menu, double [] precio) {
+	public Restaurante(String nombre, int cant_mesas, String[] menu, double [] precio) {
 		this.nombre = nombre;
 		this.cant_mesas = cant_mesas;
 		mesas = new Mesa[cant_mesas];
 		for(int i=0;i<cant_mesas;i++) {
 			mesas[i]= new Mesa(i+1,4);
 		}
-		this.caja = caja;
+		this.caja =0;
 		this.menu = menu;
 		this.precio = precio;
 	}
@@ -51,8 +51,9 @@ public class Restaurante {
 		System.out.println("Dime que plato quieres del menú del dia");
 		Scanner t = new Scanner(System.in);
 		String plato = t.nextLine();
-		Arrays.sort(menu);
-		int pos = Arrays.binarySearch(menu, plato);
+		String [] auxS = new String [menu.length];
+		System.arraycopy(menu, 0, auxS, 0, menu.length);
+		int pos = buscarPos(plato);
 		if(pos== -1) {
 			System.err.println("Ese plato no esta");
 			return;
@@ -64,9 +65,20 @@ public class Restaurante {
 		mesas[mesa-1].addPedido(aux);
 	}
 	
+	
+	
+	
+	private int buscarPos(String plato) {
+		for (int i = 0; i<menu.length;i++) {
+			if(plato.equalsIgnoreCase(menu[i]))
+				return i;
+		}
+		return -1;
+	}
+	
 	public void listarPedidosMesa(int mesa) {
 		double total = 0.0;
-		Mesa aux= mesas[mesa];
+		Mesa aux= mesas[mesa-1];
 		System.out.println(aux.totalMesa());
 		aux.mostrarPlatos();
 	}
@@ -82,9 +94,15 @@ public class Restaurante {
 	
 	
 	public void eliminarPedidoMesa(int mesa, String cod_ped) {
-		mesas[mesa].delPedido(cod_ped);
+		mesas[mesa-1].delPedido(cod_ped);
 	}
 	
+	
+	public void cobrarMesa(int mesa) {
+		caja += mesas[mesa].totalMesa();
+		mesas[mesa-1].freeMesa();
+		//Vamos aquí
+	}
 	
 	
 	

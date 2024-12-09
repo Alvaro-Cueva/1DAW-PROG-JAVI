@@ -54,7 +54,7 @@ public class Mesa {
 	public double totalMesa() {
 		double dev=0.0;
 		for (int i = 0; i<pedidos.length;i++) {
-			dev += pedidos[i].getPrecio();
+			dev += (pedidos[i].getPrecio()*pedidos[i].getCant());
 		}
 		return dev;
 	}
@@ -64,7 +64,7 @@ public class Mesa {
 		if(pos == -1)return;
 		Pedido [] aux= new Pedido[pedidos.length-1];
 		System.arraycopy(pedidos, 0, aux, 0, pos);
-		System.arraycopy(pedidos, pos+1, aux, pos, pedidos.length-1);
+		System.arraycopy(pedidos, pos+1, aux, pos, pedidos.length-1-pos);
 		pedidos=aux;
 	}
 	
@@ -77,6 +77,10 @@ public class Mesa {
 		return -1;
 	}
 	
+	public void freeMesa() {
+		pedidos=null;
+		this.comensales=0;
+	}
 	
 	
 }
