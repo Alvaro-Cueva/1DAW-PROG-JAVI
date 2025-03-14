@@ -69,18 +69,18 @@ public abstract class Personaje implements Compatible{
 //		return modificador;
 //	}
 //	
-	
-	private void isAtaqueValido(int ataque) {
-		if(ataque<0) {
-			System.out.println("El valor introdudcion en el ataque no es válido.");
-		}
-	};
-	
-	public void isDefensaValido(int defensa) {
-		if(defensa<0) {
-			System.out.println("El valor introdudcion en la defensa no es válido.");
-		}
-	};
+//	
+//	private void isAtaqueValido(int ataque) {
+//		if(ataque<0) {
+//			System.out.println("El valor introdudcion en el ataque no es válido.");
+//		}
+//	};
+//	
+//	public void isDefensaValido(int defensa) {
+//		if(defensa<0) {
+//			System.out.println("El valor introdudcion en la defensa no es válido.");
+//		}
+//	};
 	
 	
 

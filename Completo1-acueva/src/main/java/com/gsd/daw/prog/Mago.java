@@ -1,4 +1,4 @@
-package com.gsd.daw.prog;
+ package com.gsd.daw.prog;
 
 public class Mago extends Personaje{
 
