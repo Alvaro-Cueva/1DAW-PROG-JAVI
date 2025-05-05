@@ -33,7 +33,7 @@ public class Pais {
 	@Override
 	public String toString() {
 		return "Pais [nombre=" + nombre + ", poblacion=" + poblacion + ", capital=" + capital + ", continente="
-				+ continente + "]";
+				+ continente +", Porc.Poblacion="+this.poblacion/continente.getPoblacion()*100+"%"+"]";
 	}
 	
 	
