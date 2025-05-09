@@ -13,9 +13,13 @@ public class App {
 	public static void main(String[] args) {
 		Lista nuevaLista= new Lista();
 		nuevaLista.add(3);
+		nuevaLista.print();
 		nuevaLista.add(2);
+		nuevaLista.print();
 		nuevaLista.add(12);
+		nuevaLista.print();
 		nuevaLista.add(4);
+		nuevaLista.print();
 		nuevaLista.add(1);
 		nuevaLista.add(2);
 		nuevaLista.size();
@@ -31,7 +35,7 @@ public class App {
 		nuevaLista.print();
 		System.out.println("----------------");
 		//nuevaLista.add(2);
-		nuevaLista.sort();
+//		nuevaLista.sort();
 		nuevaLista.print();
 	}
 }

@@ -18,25 +18,30 @@ public class Lista {
 	
 	public Lista() {
 		this.centinela=new Nodo(0);
-		//this.centinela.setNext(centinela);
 	}
 	
 	public void add(int n) {
-		//crear una auxiliar para guardar valor que queremos añadir
-		//otra auxiliar para guardar el valor que pedimos
 		Nodo aux = centinela;
-		Nodo aux1=new Nodo(n);		
+		Nodo aux1 = centinela;
+		Nodo nuevo=new Nodo(n);
+		int cont = 0;
 		if(centinela.getNext()==null) {
-			//centinela=aux1;//asignamos el valor de nuevo nodo dado al centinela el cual no tiene valor.
-			centinela.setNext(aux1); //asignamos el puntero al siguiente nodo?
+			centinela.setNext(nuevo);
 			return;
 		}
-		Nodo aux2=aux;
-		while(aux.getNext()!=null) {
-			aux2=aux;
-			aux=aux2.getNext();
+		while(aux1.getNext()!=null) {
+			if(cont>0&&aux.getDato()>nuevo.getDato()) {
+				aux1.setNext(nuevo);
+				nuevo.setNext(aux);
+				return;
+			} else if(aux.getNext()==null) {
+				aux.setNext(nuevo);
+				return;
+			}
+			aux1=aux;
+			aux=aux.getNext();
+			cont++;
 		}
-		aux2.getNext().setNext(aux1);
 	}
 	
 
@@ -103,33 +108,33 @@ public class Lista {
 		}
 	}
 	
-	public void sort() {
-		boolean cambio = true;
-		if(centinela.getNext()==null) {
-			System.out.println("La lista no se puede ordenar porque esta vacia");
-			return;
-		}
-		do {
-		Nodo aux = centinela;
-		Nodo aux2=centinela;
-		Nodo aux3 = centinela;
-		int contador=0;
-		cambio = true;
-		while(aux2.getNext()!=null) {
-			if(contador>1 && aux2.getDato()>aux3.getDato()) {
-				aux.setNext(aux3);
-				aux2.setNext(aux3.getNext());
-				aux3.setNext(aux2);
-				cambio=false;
-			}
-			contador++;
-			aux=aux2;
-			aux2=aux3;
-			aux3=aux3.getNext();
-		}
-		}while(cambio!=true);
-	}
-	public boolean esVacia() {
+//	public void sort() {
+//		boolean cambio = true;
+//		if(centinela.getNext()==null) {
+//			System.out.println("La lista no se puede ordenar porque esta vacia");
+//			return;
+//		}
+//		do {
+//		Nodo aux = centinela;
+//		Nodo aux2=centinela;
+//		Nodo aux3 = centinela;
+//		int contador=0;
+//		cambio = true;
+//		while(aux2.getNext()!=null) {
+//			if(contador>1 && aux2.getDato()>aux3.getDato()) {
+//				aux.setNext(aux3);
+//				aux2.setNext(aux3.getNext());
+//				aux3.setNext(aux2);
+//				cambio=false;
+//			}
+//			contador++;
+//			aux=aux2;
+//			aux2=aux3;
+//			aux3=aux3.getNext();
+//		}
+//		}while(cambio!=true);
+//	}
+	public boolean isEmpty() {
 		if(centinela.getNext()==null) {
 			System.out.println("La lista esta vacía");
 			return true;
