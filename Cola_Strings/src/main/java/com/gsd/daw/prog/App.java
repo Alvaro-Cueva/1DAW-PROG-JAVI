@@ -25,5 +25,6 @@ public class App {
 		nuevaLista.print();
 		System.out.println("----------------");
 		nuevaLista.dequeue();
+		nuevaLista.print();
 	}
 }

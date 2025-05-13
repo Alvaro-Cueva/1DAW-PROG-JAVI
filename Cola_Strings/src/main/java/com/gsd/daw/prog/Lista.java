@@ -30,11 +30,16 @@ public class Lista {
 
 
 	public void dequeue() {
+		Nodo aux = centinela;
+		Nodo aux2=aux;
 		if(centinela.getNext()==null) {
 			throw new IllegalArgumentException("No hay elementos en la lista");
-		}else {
-		System.out.println(centinela.getNext().getDato());
 		}
+			if(aux.getNext()!=null) {
+				aux2=aux;
+				aux=aux2.getNext();
+				centinela.setNext(aux.getNext());
+			}
 	}
 
 	
