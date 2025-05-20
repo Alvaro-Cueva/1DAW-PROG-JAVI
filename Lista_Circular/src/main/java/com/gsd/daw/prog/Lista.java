@@ -52,24 +52,26 @@ public class Lista {
 	}
 	
 	void sort() {
+		if(centinela.getNext().equals(centinela)) {
+			return;
+		}
 		boolean listo = false;
 		do {
-		int pos=0;
-		Nodo aux = centinela;
-		Nodo aux2=centinela;
-		Nodo aux3=centinela;
-		listo=true;
-		while(aux.getNext()!=centinela) {
+			listo = true;
+	        Nodo aux3 = centinela;
+	        Nodo aux2 = centinela.getNext();
+	        Nodo aux = aux2.getNext();
+	        while (aux != centinela) {
+	            if (aux2.compareTo(aux) > 0) {
+	                aux2.setNext(aux.getNext());
+	                aux.setNext(aux2);
+	                aux3.setNext(aux);
+	                listo = false;
+	                aux = aux2.getNext();
+	            }
 			aux3=aux2;
 			aux2=aux;
 			aux=aux2.getNext();
-			pos++;
-			if(aux2.getDato().length()>aux.getDato().length()&&pos>1) {
-				aux3.setNext(aux);
-				aux2.setNext(aux.getNext());
-				aux.setNext(aux2);
-				listo=false;
-			}
 		}
 		}while(listo!=true);
 	}

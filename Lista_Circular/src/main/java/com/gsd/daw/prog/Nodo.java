@@ -1,6 +1,6 @@
 package com.gsd.daw.prog;
 
-public class Nodo {
+public class Nodo implements Comparable<Nodo>{
 	
 	private String Dato;
 	private Nodo next;
@@ -30,8 +30,13 @@ public class Nodo {
 	public String toString() {
 		return "Nodo [Dato=" + Dato + ", next=" + next + "]";
 	}
-	
 
+    @Override
+    public int compareTo(Nodo o) {
+        return this.Dato.compareToIgnoreCase(o.getDato());
+    }
+	
+	
 	
 	
 	
