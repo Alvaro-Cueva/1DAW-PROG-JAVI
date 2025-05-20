@@ -1,0 +1,185 @@
+package com.gsd.daw.prog;
+
+import java.util.*;
+
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
+public class Lista {
+	
+	private Nodo centinela;
+	
+	public Lista() {
+		this.centinela=new Nodo("Centinela");
+		this.centinela.setNext(centinela);
+		this.centinela.setPrev(centinela);
+	}
+	
+	public void add(String s) {
+		Nodo aux = centinela;
+		Nodo aux1=new Nodo(s);
+		aux1.setNext(centinela);
+		if(centinela.getNext()==centinela) {
+			centinela.setNext(aux1);
+			aux1.setPrev(centinela);
+			centinela.setPrev(aux1);
+			return;
+		}
+		Nodo aux2=aux;
+		while(aux.getNext()!=centinela) {
+			aux2=aux;
+			aux=aux2.getNext();
+		}
+		aux.setNext(aux1);
+		aux1.setPrev(aux);
+		centinela.setPrev(aux1);
+	}
+	
+	public void add(String s, int pos) {
+		int posicion = 0;
+		Nodo aux = centinela;
+		Nodo aux1=new Nodo(s);
+		aux1.setNext(centinela);
+		if(centinela.getNext()==centinela) {
+			centinela.setNext(aux1);
+	        aux1.setPrev(centinela);
+	        centinela.setPrev(aux1);
+	        return;
+		}
+		Nodo aux2=aux;
+		while(aux.getNext()!=centinela) {
+			aux2=aux;
+			aux=aux2.getNext();
+			posicion++;
+			if(posicion==pos) {
+				aux2.setNext(aux1);
+				aux1.setNext(aux);
+				aux1.setPrev(aux2);
+				aux.setPrev(aux1);
+				return;
+			}
+		}
+		aux.setNext(aux1);
+	    aux1.setPrev(aux);
+	    centinela.setPrev(aux1);
+	}
+	
+	void sort() {
+		if(centinela.getNext().equals(centinela)) {
+			return;
+		}
+		boolean listo = false;
+		do {
+			listo = true;
+	        Nodo aux3 = centinela;
+	        Nodo aux2 = centinela.getNext();
+	        Nodo aux = aux2.getNext();
+	        while (aux != centinela) {
+	            if (aux2.compareTo(aux) > 0) {
+	                aux2.setNext(aux.getNext());
+	                aux2.getNext().setPrev(aux2);
+	                aux.setNext(aux2);
+	                aux.setPrev(aux3);
+	                aux3.setNext(aux);
+	                aux2.setPrev(aux);
+	                listo = false;
+	                aux = aux2.getNext();
+	            }
+			aux3=aux2;
+			aux2=aux;
+			aux=aux2.getNext();
+		}
+		}while(listo!=true);
+	}
+	
+	
+	public void get(int n) {
+		int posicion=0;
+		Nodo aux = centinela;
+		Nodo aux2=aux;
+		while(aux.getNext()!=centinela) {
+			aux2=aux;
+			aux=aux2.getNext();
+			posicion++;
+			if(posicion==n) {
+				System.out.println(aux.getDato());
+			}
+		}
+	}
+	
+	
+	public void remove(int n) {
+		int posicion=0;
+		Nodo aux = centinela;
+		Nodo aux2=aux;
+	    if (centinela.getNext() == centinela) {
+	        System.out.println("La lista está vacía, no se puede eliminar.");
+	        return;
+	    }
+		while(aux.getNext()!=centinela) {
+			aux2=aux;
+			aux=aux2.getNext();
+			posicion++;
+			if(posicion==n) {
+				aux2.setNext(aux.getNext());
+				aux.getNext().setPrev(aux2);
+				return;
+			}
+		}
+	}
+	
+	
+	public void search(String s) {
+		int posicion=0;
+		Nodo aux = centinela;
+		Nodo aux2=aux;
+		if(centinela.getNext()==centinela) {
+			System.out.println("El elemento que buscas no se encuentra en la lista circular");
+			return;
+		}
+		while(aux.getNext()!=centinela) {
+			aux2=aux;
+			aux=aux2.getNext();
+			posicion++;
+			if(aux.getDato().equals(s)) {
+				System.out.println("El elemento "+s+" se encuentra en la posición "+posicion);
+				return;
+			}
+		}
+	}
+	
+	
+	public void size() {
+		int tamaño =0;
+		Nodo aux = centinela;
+		Nodo aux2=aux;
+		if(centinela.getNext()==centinela) {
+			throw new IllegalArgumentException("No hay elementos en la lista");
+		}
+		while(aux.getNext()!=centinela) {
+			aux2=aux;
+			aux=aux2.getNext();
+			tamaño++;
+		}
+		System.out.println("La lista tiene un tamaño de: "+tamaño);
+	}
+	
+	public void print() {
+		Nodo aux = centinela;
+		if(aux.getNext()==centinela) {
+			throw new IllegalArgumentException("No hay elementos en la lista");
+		}
+		while(aux.getNext()!=centinela) {
+			aux=aux.getNext();
+			System.out.print(aux.getDato()+" ");
+		}
+	}
+	
+	public boolean isEmpty() {
+		if(centinela.getNext()==centinela) {
+			System.out.println("La lista esta vacía");
+			return true;
+		}
+		System.out.println("La lista no esta vacía");
+		return false;
+	}
+}
